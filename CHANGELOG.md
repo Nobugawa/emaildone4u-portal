@@ -100,3 +100,33 @@
   (provider guess, raw nameserver list, last-checked time) so it's
   visible to anyone who opens that order later, not just whoever ran
   the check.
+
+## v1.11
+- Order acceptance: assigning a tech no longer implies they've seen or
+  acknowledged the job. A visible light now tracks it separately --
+  amber "Pending" until the assigned tech clicks "Accept this order,"
+  then green "Accepted by [name] · [date/time]," same timestamped
+  pattern as checklist items. Reassigning an order to a different
+  tech resets acceptance, since the new tech hasn't acknowledged it.
+  Visible on order detail (both admin and tech views) and as a
+  compact column on the admin orders list.
+
+## v1.12
+- Lead-to-portal automation is live: a Supabase Edge Function
+  ("intake-webhook") receives every intake-form submission from
+  emaildone4u.com and creates the matching order automatically --
+  client info, domain, registrar, tier (with due date auto-set from
+  it), plus the newer fields (email username, extra addresses,
+  already-owns-domain, hosting platform, wants-separate-mailbox) as
+  real structured fields, not buried in notes. Requires one manual
+  step in Netlify -- see SETUP_REQUIRED.txt.
+- Tech email notifications: assigning a tech to an order (at creation
+  or by reassigning later) now emails them via a second Edge Function
+  ("notify-tech-assignment"), sent through Resend. Requires a Resend
+  account + API key -- also in SETUP_REQUIRED.txt. Until that's set
+  up, assignment still works normally; the notification silently
+  doesn't send rather than breaking anything.
+- New order fields shown on order detail (admin and tech): email
+  username, extra addresses, already-owns-domain, hosting platform,
+  wants-separate-mailbox -- previously captured by the intake form
+  but not displayed anywhere in the portal.

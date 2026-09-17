@@ -1,0 +1,40 @@
+TWO MANUAL STEPS TO FINISH THIS RELEASE (v1.12)
+==================================================
+
+1. CONNECT THE INTAKE FORM TO THE PORTAL
+------------------------------------------
+Go to Netlify -> your emaildone4u.com site -> Site Settings -> Forms
+-> Form notifications -> Add notification -> Outgoing webhook.
+
+Set the URL to exactly this (already deployed and live):
+
+https://najzbkjflxtyfdgqdocm.supabase.co/functions/v1/intake-webhook?secret=I8E6NSMy_v1gkdsp3mczgmzNNkJ0upqF
+
+Once saved, every future intake form submission automatically creates
+an order in the portal, already assigned "new" status, tier-based due
+date, and every field the form collects. Nothing else to configure.
+
+Keep that URL private -- the "secret" in it is what stops random
+people on the internet from creating fake orders in your portal. If
+you ever suspect it's leaked, tell Claude and a new one gets deployed.
+
+2. SET UP RESEND FOR TECH EMAIL NOTIFICATIONS
+------------------------------------------------
+The notify-tech-assignment function is deployed and wired into the
+app already, but needs a Resend account to actually send anything --
+until this is done, assigning a tech works exactly as before, it
+just won't email them yet (fails silently, not visibly broken).
+
+Steps:
+  a. Sign up free at resend.com
+  b. Add and verify emaildone4u.com as a sending domain (Resend gives
+     you DNS records to add -- same kind of process as the DKIM/SPF
+     records you're already used to adding for clients)
+  c. Create an API key
+  d. Go to your Supabase project -> Edge Functions -> Manage secrets,
+     and add: RESEND_API_KEY = <the key from step c>
+  e. That's it -- no redeploy needed, the function reads it live.
+
+If you'd rather send from a different address than
+notifications@emaildone4u.com, also add a secret:
+  NOTIFY_FROM_ADDRESS = "EmailDone4U <you@emaildone4u.com>"
