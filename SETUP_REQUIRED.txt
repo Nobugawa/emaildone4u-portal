@@ -1,40 +1,37 @@
-TWO MANUAL STEPS TO FINISH THIS RELEASE (v1.12)
-==================================================
+MANUAL STEPS TO FINISH THIS RELEASE (v1.13)
+==============================================
 
-1. CONNECT THE INTAKE FORM TO THE PORTAL
-------------------------------------------
-Go to Netlify -> your emaildone4u.com site -> Site Settings -> Forms
--> Form notifications -> Add notification -> Outgoing webhook.
+1. INTAKE WEBHOOK -- if not already done, see the previous release's
+   instructions (unchanged, already working if you've done this).
 
-Set the URL to exactly this (already deployed and live):
+2. RESEND (for tech-assignment emails AND the new "Email to client"
+   feature -- both use the same setup)
+   ------------------------------------------------------------------
+   a. Sign up free at resend.com
+   b. Add and verify emaildone4u.com as a sending domain
+   c. Create an API key
+   d. Supabase project -> Edge Functions -> Manage secrets, add:
+      RESEND_API_KEY = <the key from step c>
+   Once set, BOTH the tech-assignment email and the "Email to client"
+   button start working -- no separate setup needed for each.
 
-https://najzbkjflxtyfdgqdocm.supabase.co/functions/v1/intake-webhook?secret=I8E6NSMy_v1gkdsp3mczgmzNNkJ0upqF
+3. STRIPE (new, for the invoice feature)
+   ---------------------------------------
+   a. Sign up at stripe.com if you don't already have an account
+   b. Go to Developers -> API keys -> copy your Secret key
+      (starts with sk_live_... for real charges, or sk_test_... to
+      test without real money first -- recommended to test first)
+   c. Supabase project -> Edge Functions -> Manage secrets, add:
+      STRIPE_SECRET_KEY = <the key from step b>
+   d. That's it -- "Create & send invoice" on any order will create a
+      real Stripe invoice for that order's tier price and have
+      Stripe email it to the client with a Pay button, no further
+      setup needed.
 
-Once saved, every future intake form submission automatically creates
-an order in the portal, already assigned "new" status, tier-based due
-date, and every field the form collects. Nothing else to configure.
+   Note: invoice amounts are currently fixed to the standard tier
+   prices ($150/$200/$300). If you add the separate-mailbox add-on
+   fee or change pricing, tell Claude and this gets updated to match.
 
-Keep that URL private -- the "secret" in it is what stops random
-people on the internet from creating fake orders in your portal. If
-you ever suspect it's leaked, tell Claude and a new one gets deployed.
-
-2. SET UP RESEND FOR TECH EMAIL NOTIFICATIONS
-------------------------------------------------
-The notify-tech-assignment function is deployed and wired into the
-app already, but needs a Resend account to actually send anything --
-until this is done, assigning a tech works exactly as before, it
-just won't email them yet (fails silently, not visibly broken).
-
-Steps:
-  a. Sign up free at resend.com
-  b. Add and verify emaildone4u.com as a sending domain (Resend gives
-     you DNS records to add -- same kind of process as the DKIM/SPF
-     records you're already used to adding for clients)
-  c. Create an API key
-  d. Go to your Supabase project -> Edge Functions -> Manage secrets,
-     and add: RESEND_API_KEY = <the key from step c>
-  e. That's it -- no redeploy needed, the function reads it live.
-
-If you'd rather send from a different address than
-notifications@emaildone4u.com, also add a secret:
-  NOTIFY_FROM_ADDRESS = "EmailDone4U <you@emaildone4u.com>"
+Until each of these is set up, the related features fail gracefully --
+nothing else in the portal is affected, and the buttons just report
+"not configured yet" instead of breaking anything.

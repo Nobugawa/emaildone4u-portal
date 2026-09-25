@@ -130,3 +130,20 @@
   username, extra addresses, already-owns-domain, hosting platform,
   wants-separate-mailbox -- previously captured by the intake form
   but not displayed anywhere in the portal.
+
+## v1.13
+- Fixed stale "Formspree notification received" checklist step --
+  leftover from before the move to Netlify. Now reflects reality: the
+  order auto-appears via the webhook, plus an email notification.
+- DNS check now also shows what the client self-reported for website
+  hosting, and flags whether it matches the actually-detected DNS
+  provider -- catches the common case where a site is built on one
+  platform but DNS still lives somewhere else.
+- New: "Email to client" -- compose and send a free-text email
+  straight from the order page (admin or the assigned tech), via
+  Resend. Needs the same Resend setup as tech-assignment emails --
+  see SETUP_REQUIRED.txt.
+- New: "Stripe invoice" (admin only) -- one click creates a Stripe
+  invoice for the order's tier price and has Stripe email it directly
+  to the client with a Pay button. Needs a Stripe account -- see
+  SETUP_REQUIRED.txt.
