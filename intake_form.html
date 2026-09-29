@@ -473,7 +473,6 @@
     <div class="trust-item"><div class="dot"></div>No password sharing</div>
     <div class="trust-item"><div class="dot"></div>Same-day slots available</div>
     <div class="trust-item"><div class="dot"></div>30-day support included</div>
-    <div class="trust-item"><div class="dot"></div>Pay after it works</div>
   </div>
 
   <div class="card">
@@ -527,34 +526,27 @@
 
         <div class="divider"></div>
 
-        <!-- Section 2: Your web address (domain) -->
+        <!-- Section 2: Your New Email -->
+        <!-- Section 2: Domain (moved before email address -- you need to know this first) -->
         <div class="section">
           <div class="section-label">
             <div class="section-num">2</div>
-            <h3>Your Web Address (Domain)</h3>
+            <h3>Domain & Registrar</h3>
           </div>
 
           <div class="field">
-            <label>Do you already own a web address (domain) for your business? <span class="req">*</span> <span class="hint">e.g. joesplumbing.com</span></label>
+            <label>Do you already own a domain? <span class="req">*</span></label>
             <select id="domainStatus" name="already_owns_domain" onchange="toggleRegistrar()" required>
               <option value="">— select one —</option>
-              <option value="yes">Yes, I already own one</option>
-              <option value="unsure">I'm not sure</option>
-              <option value="no">No, I need to get one</option>
+              <option value="yes">Yes, I already own it</option>
+              <option value="no">No, I need to purchase one</option>
+              <option value="unsure">Not sure</option>
             </select>
-          </div>
-
-          <div class="info-box" id="domainInfo"></div>
-
-          <div class="field" id="domainField" style="display:none;">
-            <label id="domainFieldLabel">Your domain <span class="req">*</span></label>
-            <input type="text" id="domain" name="desired_domain" placeholder="yourbusiness.com" required oninput="updatePreview()">
-            <p id="domainFieldHint" style="font-size:12px;color:#94a3b8;margin-top:6px;line-height:1.5;"></p>
           </div>
 
           <div id="registrarSection" style="display:none;">
             <div class="field">
-              <label>Where did you buy it? <span class="hint">the company you pay for your domain — pick the closest match</span></label>
+              <label>Where is your domain registered?</label>
               <div class="registrar-grid">
                 <div class="registrar-option"><input type="radio" name="registrar" id="r1" value="GoDaddy"><label class="registrar-pill" for="r1">GoDaddy</label></div>
                 <div class="registrar-option"><input type="radio" name="registrar" id="r2" value="Namecheap"><label class="registrar-pill" for="r2">Namecheap</label></div>
@@ -562,14 +554,15 @@
                 <div class="registrar-option"><input type="radio" name="registrar" id="r4" value="Google Domains"><label class="registrar-pill" for="r4">Google Domains</label></div>
                 <div class="registrar-option"><input type="radio" name="registrar" id="r5" value="Squarespace"><label class="registrar-pill" for="r5">Squarespace</label></div>
                 <div class="registrar-option"><input type="radio" name="registrar" id="r6" value="Other"><label class="registrar-pill" for="r6">Other</label></div>
-                <div class="registrar-option"><input type="radio" name="registrar" id="r7" value="Not sure"><label class="registrar-pill" for="r7">Not sure</label></div>
               </div>
             </div>
           </div>
 
+          <div class="info-box" id="domainInfo"></div>
+
           <div id="hostingSection" style="display:none;">
             <div class="field">
-              <label>Do you have a website? If so, where's it hosted? <span class="hint">helps us find the right place to set up your email — not always the same as where you bought your domain</span></label>
+              <label>Do you have a website? If so, where's it hosted? <span class="hint">helps us find the right place to configure email — not always the same as your registrar</span></label>
               <select id="hostingPlatform" name="hosting_platform">
                 <option value="">— select one —</option>
                 <option value="no-website">No website</option>
@@ -593,6 +586,13 @@
           <div class="section-label">
             <div class="section-num">3</div>
             <h3>Your New Email Address</h3>
+          </div>
+
+          <div class="field">
+            <label id="domainFieldLabel">What domain do you want? <span class="req">*</span> <span class="hint">e.g. acmeplumbing.com</span></label>
+            <input type="text" id="domain" name="desired_domain" placeholder="yourbusiness.com" required oninput="updatePreview()">
+            <p id="domainFieldHint" style="font-size:12px;color:#94a3b8;margin-top:6px;line-height:1.5;">
+            </p>
           </div>
 
           <div class="field">
@@ -673,11 +673,7 @@
         <!-- Security note -->
         <div class="security-note">
           <div class="icon">🛡️</div>
-          <p><strong>You will never be asked for your password.</strong> You give us temporary setup access, we do the work, then we remove it. Your credentials stay yours.</p>
-        </div>
-        <div class="security-note">
-          <div class="icon">💳</div>
-          <p><strong>Pay only when it works.</strong> No payment up front — we send our invoice after your email is working. Google's own subscription (~$7/mo) is separate and billed by Google.</p>
+          <p><strong>You will never be asked for your password.</strong> We use secure delegated access — you grant us temporary setup permissions, we do the work, then remove our access. Your credentials stay yours.</p>
         </div>
 
         <button type="submit" class="submit-btn">Submit & Get Started →</button>
@@ -692,23 +688,17 @@
         <p>We received your intake form and will follow up with <strong id="confirmEmail"></strong> within one business day — often much sooner.</p>
         <div class="next-steps" id="stepsOwnDomain" style="display:none;">
           <h4>What happens next</h4>
-          <div class="next-step-item"><div class="step-dot">1</div><div>We'll email you simple steps to give us temporary access to your domain — about 2–3 minutes, done in your own account. You're never asked for a password.</div></div>
-          <div class="next-step-item"><div class="step-dot">2</div><div>We set up your Google Workspace account and make sure your email sends and arrives properly. When Google asks you to activate its subscription (~$7/mo), you enter your own card on Google's page — never shared with us.</div></div>
-          <div class="next-step-item"><div class="step-dot">3</div><div>You get a handoff email with your new login, phone setup instructions, and a test confirmation. Then we send our invoice — you pay for our setup only after it's working.</div></div>
-        </div>
-        <div class="next-steps" id="stepsUnsure" style="display:none;">
-          <h4>What happens next</h4>
-          <div class="next-step-item"><div class="step-dot">1</div><div>We'll look up the address you gave us and email you what we find — usually within one business day. Nothing is set up until you've heard from us.</div></div>
-          <div class="next-step-item"><div class="step-dot">2</div><div>If you already own it, we'll send simple steps to give us temporary access. If not, we'll send a short guide to getting one (about 5 minutes).</div></div>
-          <div class="next-step-item"><div class="step-dot">3</div><div>We set up your Google Workspace account and make sure your email sends and arrives properly. When Google asks you to activate its subscription (~$7/mo), you enter your own card on Google's page — never shared with us.</div></div>
-          <div class="next-step-item"><div class="step-dot">4</div><div>You get a handoff email with your new login, phone setup instructions, and a test confirmation. Then we send our invoice — you pay for our setup only after it's working.</div></div>
+          <div class="next-step-item"><div class="step-dot">1</div><div>We'll email you exact steps to grant us DNS-only access through your registrar's own account settings — about 2-3 minutes, done on your end. You're never asked for a password.</div></div>
+          <div class="next-step-item"><div class="step-dot">2</div><div>Once access is granted, we configure everything — DNS records, your new Google Workspace account, SPF, DKIM, DMARC.</div></div>
+          <div class="next-step-item"><div class="step-dot">3</div><div>When your Workspace is ready, you'll enter your own payment card directly on Google's page — never shared with us.</div></div>
+          <div class="next-step-item"><div class="step-dot">4</div><div>You receive a handoff email with your new login, phone setup instructions, and a test confirmation.</div></div>
         </div>
         <div class="next-steps" id="stepsNewDomain" style="display:none;">
           <h4>What happens next</h4>
-          <div class="next-step-item"><div class="step-dot">1</div><div>Get your domain — about 5 minutes, typically $12–18/year at any registrar. We'll email you a short guide. We can't begin setup until it's yours.</div></div>
-          <div class="next-step-item"><div class="step-dot">2</div><div>Once you have it, reply to our email and we'll send simple steps to give us temporary access.</div></div>
-          <div class="next-step-item"><div class="step-dot">3</div><div>We set up your Google Workspace account and make sure your email sends and arrives properly. When Google asks you to activate its subscription (~$7/mo), you enter your own card on Google's page — never shared with us.</div></div>
-          <div class="next-step-item"><div class="step-dot">4</div><div>You get a handoff email with your new login, phone setup instructions, and a test confirmation. Then we send our invoice — you pay for our setup only after it's working.</div></div>
+          <div class="next-step-item"><div class="step-dot">1</div><div>Register the domain you told us about above, if you haven't already — about 5 minutes, typically $12–18/year at any registrar. We can't begin until you own it.</div></div>
+          <div class="next-step-item"><div class="step-dot">2</div><div>We build your new Google Workspace account and configure DNS, SPF, DKIM, DMARC.</div></div>
+          <div class="next-step-item"><div class="step-dot">3</div><div>When your Workspace is ready, you'll enter your own payment card directly on Google's page — never shared with us.</div></div>
+          <div class="next-step-item"><div class="step-dot">4</div><div>You receive a handoff email with your new login, phone setup instructions, and a test confirmation.</div></div>
         </div>
       </div>
 
@@ -756,49 +746,46 @@
     const reg = document.getElementById('registrarSection');
     const info = document.getElementById('domainInfo');
     const hosting = document.getElementById('hostingSection');
-    const field = document.getElementById('domainField');
-    const input = document.getElementById('domain');
     const label = document.getElementById('domainFieldLabel');
     const hint = document.getElementById('domainFieldHint');
 
-    // reset
-    reg.style.display = 'none';
-    hosting.style.display = 'none';
-    field.style.display = 'none';
-    info.className = 'info-box';
-    info.innerHTML = '';
-    hint.innerHTML = '';
-    input.required = true;
-
     if (val === 'yes') {
-      field.style.display = 'block';
       reg.style.display = 'block';
       hosting.style.display = 'block';
-      label.innerHTML = 'What\'s your domain? <span class="req">*</span> <span class="hint">e.g. joesplumbing.com</span>';
-    } else if (val === 'unsure') {
-      field.style.display = 'block';
-      hosting.style.display = 'block';
-      input.required = false;
-      info.className = 'info-box show';
-      info.innerHTML = '<strong>No problem — we\'ll find out for you.</strong> If you have a website or a business email address, enter it below and we\'ll look it up and tell you what we find before we do anything. If you don\'t have one, tell us the name you\'d like.';
-      label.innerHTML = 'Your website address, or the name you\'d like <span class="hint">e.g. joesplumbing.com — leave blank if you\'re not sure</span>';
+      info.className = 'info-box';
+      info.innerHTML = '';
+      label.innerHTML = 'What\'s the domain you already own? <span class="req">*</span> <span class="hint">e.g. acmeplumbing.com</span>';
+      hint.innerHTML = '';
     } else if (val === 'no') {
-      field.style.display = 'block';
+      reg.style.display = 'none';
+      hosting.style.display = 'none';
       info.className = 'info-box show';
-      info.innerHTML = `<strong>No problem — that\'s quick to do yourself.</strong> Getting a domain takes about 5 minutes and typically costs $12–18/year. We recommend <a href="https://www.namecheap.com" target="_blank" rel="noopener" style="color:#3b82f6;">Namecheap</a> for its simple pricing and easy setup, though any registrar works fine.
+      info.innerHTML = `<strong>No problem — that's quick to fix yourself.</strong> Registering a domain takes about 5 minutes and typically costs $12–18/year. We recommend <a href="https://www.namecheap.com" target="_blank" rel="noopener" style="color:#3b82f6;">Namecheap</a> for its simple pricing and easy setup, though any registrar works fine.
         <details style="margin-top:10px;">
-          <summary style="cursor:pointer;font-weight:600;color:#3b82f6;">How to get a domain</summary>
+          <summary style="cursor:pointer;font-weight:600;color:#3b82f6;">Learn more about getting a domain</summary>
           <div style="margin-top:8px;font-weight:400;">
-            1. Go to a registrar (Namecheap, GoDaddy, etc.) and search for the name you want.<br>
-            2. If it\'s taken, try a short variation or a different ending (.co, .net, .biz).<br>
-            3. Buy just the domain — you don\'t need hosting, a website builder, or other add-ons.<br>
-            4. You can submit this form now. We\'ll email you the next steps, and we start as soon as the domain is yours.
+            1. Go to a registrar (Namecheap, GoDaddy, etc.) and search your desired name.<br>
+            2. If it's taken, try a short variation or a different ending (.co, .net, .biz).<br>
+            3. Purchase it — no need for hosting, website builder, or other add-ons, just the domain itself.<br>
+            4. Enter whatever you land on below. Once you actually own it, submit this form (or update your submission) and we'll take it from there — DNS, email, all of it.
           </div>
         </details>`;
-      label.innerHTML = 'What domain do you plan to get? <span class="req">*</span> <span class="hint">e.g. joesplumbing.com</span>';
-      hint.innerHTML = 'You don\'t need to have bought it yet. Picking a name is up to you — we don\'t offer naming help. You can check availability at <a href="https://www.namecheap.com" target="_blank" rel="noopener" style="color:#3b82f6;">namecheap.com</a>. If your first choice is taken, try a short variation (getjoesplumbing.com) or another ending (.co, .net).';
+      label.innerHTML = 'What domain would you like to register? <span class="req">*</span> <span class="hint">e.g. acmeplumbing.com</span>';
+      hint.innerHTML = 'Picking a name is up to you — we don\'t offer naming help. Quickly check availability yourself at <a href="https://www.namecheap.com" target="_blank" rel="noopener" style="color:#3b82f6;">namecheap.com</a>. Most .com names are already taken; if yours is, try a short variation (getacme.com, acmehq.com) or another ending (.co, .net, .biz), then enter whatever you land on below.';
+    } else if (val === 'unsure') {
+      reg.style.display = 'none';
+      hosting.style.display = 'block';
+      info.className = 'info-box show';
+      info.innerHTML = '<strong>No worries.</strong> We\'ll check for you when we begin setup and let you know what we find before proceeding.';
+      label.innerHTML = 'What domain would you like, if available? <span class="req">*</span> <span class="hint">e.g. acmeplumbing.com</span>';
+      hint.innerHTML = '';
+    } else {
+      reg.style.display = 'none';
+      hosting.style.display = 'none';
+      info.className = 'info-box';
+      label.innerHTML = 'What domain do you want? <span class="req">*</span> <span class="hint">e.g. acmeplumbing.com</span>';
+      hint.innerHTML = '';
     }
-    updatePreview();
   }
 
   document.getElementById('intakeForm').addEventListener('submit', function(e) {
@@ -817,13 +804,14 @@
     document.getElementById('confirmEmail').textContent = email;
     document.getElementById('intakeForm').style.display = 'none';
     document.getElementById('successScreen').style.display = 'block';
-    // Show the next-steps list that matches their situation (yes / unsure / no)
-    const stepsId = ownsdomain === 'yes' ? 'stepsOwnDomain' : (ownsdomain === 'unsure' ? 'stepsUnsure' : 'stepsNewDomain');
-    document.getElementById(stepsId).style.display = 'block';
+    // Show the accurate next-steps list for their actual situation --
+    // "yes" (they own a domain) needs a genuinely different explanation
+    // than "no"/"unsure" (we buy it -- nothing needed from them there).
+    document.getElementById(ownsdomain === 'yes' ? 'stepsOwnDomain' : 'stepsNewDomain').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
 
-<div style="text-align:right;padding:4px 5% 8px;font-size:11px;color:rgba(255,255,255,0.25);">V1.18</div>
+<div style="text-align:right;padding:4px 5% 8px;font-size:11px;color:rgba(255,255,255,0.25);">V1.17</div>
 </body>
 </html>

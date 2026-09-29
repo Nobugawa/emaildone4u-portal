@@ -570,26 +570,6 @@ footer p { color: var(--slate2); font-size: 12px; }
   .hero-actions { flex-direction:column; }
   .btn-primary, .btn-outline { text-align:center; justify-content:center; }
 }
-
-/* v1.18: inline technical-details expander + pay-after section */
-.tech-details { margin-top: 28px; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 14px 18px; background: rgba(255,255,255,0.06); }
-.tech-details summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--white); list-style: none; }
-.tech-details summary::-webkit-details-marker { display: none; }
-.tech-details summary::after { content: ' \25BE'; }
-.tech-details[open] summary::after { content: ' \25B4'; }
-.tech-details-body { margin-top: 12px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.8); }
-.tech-details-body p { margin-bottom: 10px; }
-.tech-details-body strong { color: var(--white); }
-.payafter-section { background: var(--ice2); text-align: center; }
-.payafter-section h2 { max-width: 640px; margin-left: auto; margin-right: auto; }
-.payafter-section .section-sub { max-width: 620px; margin-left: auto; margin-right: auto; }
-.payafter-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 900px; margin: 36px auto 0; text-align: left; }
-.payafter-step { background: var(--white); border-radius: var(--radius); padding: 22px; border: 1px solid #dbeafe; }
-.payafter-step .n { width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: var(--white); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
-.payafter-step h4 { font-size: 15px; margin-bottom: 4px; color: var(--navy); }
-.payafter-step p { font-size: 13px; color: var(--slate); line-height: 1.55; }
-.payafter-fine { max-width: 620px; margin: 24px auto 0; font-size: 13px; color: var(--slate); line-height: 1.6; }
-@media(max-width:900px){ .payafter-steps { grid-template-columns: 1fr; max-width: 420px; } }
 </style>
 </head>
 <body>
@@ -621,7 +601,7 @@ footer p { color: var(--slate2); font-size: 12px; }
     <div class="hero-left">
       <div class="hero-tag">Professional Email Setup</div>
       <h1>Your business email<br>should work as hard<br>as <em>you do</em></h1>
-      <p class="hero-sub">We set up your professional business email for you — no passwords shared, no tech headaches, done in as little as one day. You pay only after it's working.</p>
+      <p class="hero-sub">We set up your custom domain email — no passwords shared, no DNS headaches, done in as little as one day. You just send emails.</p>
       <div class="hero-actions">
         <a href="intake_form.html" class="btn-primary">Get My Email Set Up →</a>
         <a href="#how" class="btn-outline">See How It Works</a>
@@ -630,7 +610,6 @@ footer p { color: var(--slate2); font-size: 12px; }
         <div class="pill"><span class="pill-icon">🔒</span>No password sharing</div>
         <div class="pill"><span class="pill-icon">⚡</span>Same-day available</div>
         <div class="pill"><span class="pill-icon">✅</span>30-day support</div>
-        <div class="pill"><span class="pill-icon">💳</span>Pay after it works</div>
       </div>
     </div>
     <div class="hero-right">
@@ -700,40 +679,32 @@ footer p { color: var(--slate2); font-size: 12px; }
         <div class="nopass-step reveal">
           <div class="step-circle">1</div>
           <div class="nopass-step-text">
-            <h4>Already have a web address (domain)? You give temporary access — not a password</h4>
-            <p>We send you simple click-by-click steps (or a short video) — 2–3 minutes, done inside your own account where you bought your domain. Don't have one yet? You'll get one first (about 5 minutes — see our FAQ below), then this same step applies.</p>
+            <h4>Already have a domain? You grant temporary access — not a password</h4>
+            <p>We send you exact click-by-click steps (or a short video) for your specific registrar's own sharing settings — 2–3 minutes, done inside your own account. Don't have a domain yet? You'll register one yourself first (about 5 minutes — see our domain FAQ below), then this same step applies.</p>
           </div>
         </div>
         <div class="nopass-step reveal">
           <div class="step-circle">2</div>
           <div class="nopass-step-text">
             <h4>We build your Google Workspace account</h4>
-            <p>We set everything up and test it on our end so your email sends and arrives properly. When it's time to activate Google's subscription, you enter your own card directly on Google's page — never shared with us.</p>
+            <p>DNS records, SPF, DKIM, DMARC — all configured and tested on our end. When it's time to activate billing, you enter your own card directly on Google's page — never shared with us.</p>
           </div>
         </div>
         <div class="nopass-step reveal">
           <div class="step-circle">3</div>
           <div class="nopass-step-text">
             <h4>We remove our access immediately</h4>
-            <p>Once setup is confirmed and you've received your handoff document, our temporary access is removed. Your account is entirely yours.</p>
+            <p>Once setup is confirmed and you've received your handoff document, our delegated access is revoked. Your account is entirely yours.</p>
           </div>
         </div>
       </div>
-      <details class="tech-details reveal">
-        <summary>Curious about the technical details?</summary>
-        <div class="tech-details-body">
-          <p><strong>How access works.</strong> You use your domain registrar's (or DNS host's) own sharing settings to give us scoped, temporary access to your DNS records only. It is not a login to your account, and we remove it when the job is done. If your domain points to a hosting platform's name servers, we work through that platform instead.</p>
-          <p><strong>What we configure.</strong> We create your Google Workspace account, add the MX records that route your mail to Google, and publish SPF (which servers may send as you), DKIM (a digital signature on your outgoing mail) and DMARC (what receivers should do with mail that fails those checks).</p>
-          <p><strong>Why it matters.</strong> SPF, DKIM and DMARC are what keep your invoices and replies out of spam and make it harder for someone to impersonate your domain. We finish with a full delivery test.</p>
-        </div>
-      </details>
     </div>
     <div class="nopass-visual reveal">
       <div class="shield-big">🛡️</div>
       <div class="nopass-stat">0</div>
       <div class="nopass-stat-label">Passwords ever shared with us</div>
       <div class="nopass-checklist">
-        <div class="nopass-check">Temporary access — not your password</div>
+        <div class="nopass-check">Temporary delegated access — not your password</div>
         <div class="nopass-check">Access revoked after every job</div>
         <div class="nopass-check">Google's own secure admin system</div>
         <div class="nopass-check">You stay in full control throughout</div>
@@ -753,22 +724,22 @@ footer p { color: var(--slate2); font-size: 12px; }
       <div class="step-item reveal">
         <div class="step-icon">📋<span class="step-num">1</span></div>
         <h4>Fill out the intake form</h4>
-        <p>The form takes about 3 minutes. Tell us your business name, the email address you'd like, and how fast you need it.</p>
+        <p>3 minutes. Tell us your business name, preferred email address, and which tier you need.</p>
       </div>
       <div class="step-item reveal">
         <div class="step-icon">🔗<span class="step-num">2</span></div>
-        <h4>Give temporary access — only if you already own a domain</h4>
-        <p>We send you simple steps, 2–3 minutes, done in your own account. Don't have a domain yet? Get one first (about 5 minutes, we recommend Namecheap) — then this step applies.</p>
+        <h4>Grant temporary access — only if you already own a domain</h4>
+        <p>We send you exact steps for your registrar's own sharing settings, 2-3 minutes. Don't have a domain yet? Register one yourself first (about 5 minutes, we recommend Namecheap) — then this step applies.</p>
       </div>
       <div class="step-item reveal">
         <div class="step-icon">⚙️<span class="step-num">3</span></div>
         <h4>We configure everything</h4>
-        <p>We set up your Google Workspace account and make sure your email sends and arrives properly — all tested while you focus on your business.</p>
+        <p>DNS records, Google Workspace, SPF, DKIM, DMARC — all set up and tested while you focus on your business.</p>
       </div>
       <div class="step-item reveal">
         <div class="step-icon">🎉<span class="step-num">4</span></div>
         <h4>You're live</h4>
-        <p>You get a full handoff document — login details, phone setup guide, and 30 days of included support. Then we send our invoice: you pay only after it's working.</p>
+        <p>You receive a full handoff document — login details, phone setup guide, and 30 days of included support.</p>
       </div>
     </div>
   </div>
@@ -779,17 +750,17 @@ footer p { color: var(--slate2); font-size: 12px; }
   <div class="section-inner">
     <span class="section-tag reveal">Pricing</span>
     <h2 class="reveal">Choose your setup speed</h2>
-    <p class="section-sub reveal">Flat fee. No surprises. You pay us only after your email is working. Google Workspace subscription (~$7/mo) is billed directly to you by Google — not us.</p>
+    <p class="section-sub reveal">Flat fee. No surprises. Google Workspace subscription (~$7/mo) is billed directly to you by Google — not us.</p>
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="price-tier">Standard</div>
         <div class="price-amount">$150</div>
         <div class="price-timeline">Ready in 2 business days</div>
         <div class="price-features">
-          <div class="price-feature">Connecting your domain to Google</div>
+          <div class="price-feature">Domain configuration</div>
           <div class="price-feature">Google Workspace account setup</div>
           <div class="price-feature">Custom email address</div>
-          <div class="price-feature">Spam protection &amp; delivery setup</div>
+          <div class="price-feature">SPF, DKIM & DMARC records</div>
           <div class="price-feature">Full delivery test</div>
           <div class="price-feature">30-day support included</div>
         </div>
@@ -801,10 +772,10 @@ footer p { color: var(--slate2); font-size: 12px; }
         <div class="price-amount">$200</div>
         <div class="price-timeline">Ready within 24 hours</div>
         <div class="price-features">
-          <div class="price-feature">Connecting your domain to Google</div>
+          <div class="price-feature">Domain configuration</div>
           <div class="price-feature">Google Workspace account setup</div>
           <div class="price-feature">Custom email address</div>
-          <div class="price-feature">Spam protection &amp; delivery setup</div>
+          <div class="price-feature">SPF, DKIM & DMARC records</div>
           <div class="price-feature">Full delivery test</div>
           <div class="price-feature">30-day support included</div>
         </div>
@@ -815,10 +786,10 @@ footer p { color: var(--slate2); font-size: 12px; }
         <div class="price-amount">$300</div>
         <div class="price-timeline">Ready today — same day</div>
         <div class="price-features">
-          <div class="price-feature">Connecting your domain to Google</div>
+          <div class="price-feature">Domain configuration</div>
           <div class="price-feature">Google Workspace account setup</div>
           <div class="price-feature">Custom email address</div>
-          <div class="price-feature">Spam protection &amp; delivery setup</div>
+          <div class="price-feature">SPF, DKIM & DMARC records</div>
           <div class="price-feature">Full delivery test</div>
           <div class="price-feature">30-day support included</div>
         </div>
@@ -826,21 +797,6 @@ footer p { color: var(--slate2); font-size: 12px; }
       </div>
     </div>
     <p class="pricing-note reveal">⚡ Same-day Rush slots are limited — contact us early to reserve yours.</p>
-  </div>
-</section>
-
-<!-- PAY AFTER -->
-<section class="payafter-section" id="pay-after">
-  <div class="section-inner">
-    <span class="section-tag reveal">Our Promise</span>
-    <h2 class="reveal">Pay only when it works</h2>
-    <p class="section-sub reveal">We don't ask for payment up front. We set up your email, you try it out, and only then do we send our invoice for the setup fee.</p>
-    <div class="payafter-steps">
-      <div class="payafter-step reveal"><div class="n">1</div><h4>We do the work first</h4><p>Your account is built and tested before any invoice goes out.</p></div>
-      <div class="payafter-step reveal"><div class="n">2</div><h4>You try it out</h4><p>Send and receive a test email and check it works the way you expect.</p></div>
-      <div class="payafter-step reveal"><div class="n">3</div><h4>Then we invoice</h4><p>A simple invoice for the flat setup fee you chose. Nothing hidden.</p></div>
-    </div>
-    <p class="payafter-fine reveal">Google's own Workspace subscription (~$7/month) is separate. Google bills it to you directly, and you enter your card on Google's page, never with us.</p>
   </div>
 </section>
 
@@ -853,11 +809,7 @@ footer p { color: var(--slate2); font-size: 12px; }
     <div class="faq-grid">
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">Do I need to already own a domain?<span class="faq-arrow">+</span></div>
-        <div class="faq-a"><p>No, but you'll need to get one before we can start — it only takes about 5 minutes and typically costs $12–18/year through any registrar. A few simple, reputable options: <a href="https://www.namecheap.com" target="_blank" rel="noopener">Namecheap</a> (our usual recommendation — simple pricing, easy to use), <a href="https://www.godaddy.com" target="_blank" rel="noopener">GoDaddy</a>, or <a href="https://www.squarespace.com/domains" target="_blank" rel="noopener">Squarespace Domains</a>. Not sure whether you already have one? Put your website or business address on the intake form and we'll look it up for you. Once you own one, we'll handle everything from there.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">When do I pay?<span class="faq-arrow">+</span></div>
-        <div class="faq-a"><p>After your email is working. We send an invoice for the flat setup fee once you've received your handoff document. Google's own Workspace subscription (~$7/month) is separate and billed to you by Google.</p></div>
+        <div class="faq-a"><p>No, but you'll need to register one yourself before we can start — it only takes about 5 minutes and typically costs $12–18/year through any registrar. A few simple, reputable options: <a href="https://www.namecheap.com" target="_blank" rel="noopener">Namecheap</a> (our usual recommendation — simple pricing, easy to use), <a href="https://www.godaddy.com" target="_blank" rel="noopener">GoDaddy</a>, or <a href="https://www.squarespace.com/domains" target="_blank" rel="noopener">Squarespace Domains</a>. Once you own it, just enter it on the intake form and we'll handle everything from there.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">What is Google Workspace?<span class="faq-arrow">+</span></div>
@@ -869,7 +821,7 @@ footer p { color: var(--slate2); font-size: 12px; }
       </div>
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">How do I know my account stays secure?<span class="faq-arrow">+</span></div>
-        <div class="faq-a"><p>We use Google's own secure sharing tools, so we never ask for or store your password. Once setup is complete and confirmed, we remove our temporary access entirely. Your account is 100% yours.</p></div>
+        <div class="faq-a"><p>We use Google's delegated admin system — meaning we never ask for or store your password. Once setup is complete and confirmed, we remove our delegated access entirely. Your account is 100% yours.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">Can I get multiple email addresses?<span class="faq-arrow">+</span></div>
@@ -905,7 +857,7 @@ footer p { color: var(--slate2); font-size: 12px; }
     </div>
   <p><a href="mailto:help@emaildone4u.com" style="color:var(--slate);text-decoration:none;">help@emaildone4u.com</a></p>
   <p style="margin-top:6px;">Not affiliated with Google LLC.</p>
-  <span style="font-size:11px;color:var(--slate2);text-align:right;margin-top:8px;display:block;">V1.18</span>
+  <span style="font-size:11px;color:var(--slate2);text-align:right;margin-top:8px;display:block;">V1.17</span>
 </footer>
 
 <script>// Nav
