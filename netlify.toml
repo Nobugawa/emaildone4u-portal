@@ -1,0 +1,22 @@
+# Netlify configuration for EmailDone4U
+# Drop the entire emaildone4u-deploy folder into Netlify
+
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/b2b"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/b2b.html"
+  to = "/index.html"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
