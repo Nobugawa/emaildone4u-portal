@@ -1,19 +1,17 @@
 # EmailDone4U Technician Portal — Changelog
 
-## v1.17
-- **Website check.** Detects whether a live website is being served and what platform runs it
-  (Squarespace, Wix, WordPress, Shopify, Webflow, GoDaddy Builder, Netlify, Vercel) and compares
-  it with what the client said: site exists / no site / wrong platform / parked page only.
-- **Lame-DNS wording fixed.** Old nameservers that no longer answer (e.g. leftover GoDaddy ones)
-  are no longer described as "DNS hosted at GoDaddy". They are flagged as a likely leftover;
-  the next step is access at the registrar. The "DNS / nameserver issue" email template follows suit.
-- Backend: `domain-check` v2, new `orders.site_check` column (already applied).
-
-## v1.16
-- **DNS & registrar check.** Looks up the real registrar from the public registry (RDAP), checks
-  whether DNS answers, shows clear banners (broken DNS, registrar mismatch, DNS elsewhere).
-- **Email templates**, email history per order, and auto-tick of "Reply to client within 1 hour"
-  when a Confirmation notice is sent.
+## v1.18
+- **Delivery clock.** New card on each order. The promise clock starts when the client approves
+  access to their domain settings: click "Access granted — start clock" and the due time is
+  recalculated (Standard 2 business days, Priority 24 h, Rush 8 h). Before that, the due time is
+  provisional. Rush needs order + access by 2 PM ET.
+- **Late flag + late adjustment.** If past the deadline, a red notice explains the promise (pay the
+  next tier down: Rush $200, Priority $150, Standard $100). Invoice preview has a
+  "We missed the deadline" checkbox that applies it (create-stripe-invoice v6).
+- Emails: the Confirmation notice explains the clock; new template "Access received — clock started".
+- Fixed: confirming via email now refreshes the checklist on the admin order page too.
+- Backend: intake-webhook v5 sends a clean new-order email (selected tier only);
+  columns `orders.access_granted_at`, `orders.late_adjustment` (already applied).
 
 ## v1.15
 - **Fixed the $0 Stripe invoice bug (frontend half).** The "Create & send
