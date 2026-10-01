@@ -1,22 +1,19 @@
 # EmailDone4U Technician Portal — Changelog
 
+## v1.17
+- **Website check.** Detects whether a live website is being served and what platform runs it
+  (Squarespace, Wix, WordPress, Shopify, Webflow, GoDaddy Builder, Netlify, Vercel) and compares
+  it with what the client said: site exists / no site / wrong platform / parked page only.
+- **Lame-DNS wording fixed.** Old nameservers that no longer answer (e.g. leftover GoDaddy ones)
+  are no longer described as "DNS hosted at GoDaddy". They are flagged as a likely leftover;
+  the next step is access at the registrar. The "DNS / nameserver issue" email template follows suit.
+- Backend: `domain-check` v2, new `orders.site_check` column (already applied).
+
 ## v1.16
-- **DNS & registrar check.** Looks up the real registrar from the public registry (RDAP)
-  and checks whether the domain's DNS actually answers. Runs automatically the first time
-  an order is opened. Clear banners:
-  - DNS broken / "lame delegation" (registered at one company, nameservers point to another
-    that refuses to answer) — e.g. diy-dojo.com: Namecheap + GoDaddy nameservers.
-  - Registrar mismatch (client said X, registry says Y).
-  - DNS hosted somewhere other than the registrar.
-  - Registrar identified when the client wasn't sure; "Google Domains is now Squarespace" note.
-- **Email templates** in Compose: Confirmation notice (only the selected tier), Generic
-  (edit freely), Confirm your registrar, DNS is managed elsewhere.
-- **Sending a Confirmation notice auto-ticks** "Reply to client within 1 hour" on the
-  checklist, with who/when.
-- **Email history** per order (subject, template, sender, time, full text).
-- Message text is now HTML-escaped before sending.
-- Backend: new `domain-check` function, `send-client-email` v6, new `email_log` table and
-  `orders.rdap_registrar / dns_health / dns_health_detail / registry_nameservers` (already applied).
+- **DNS & registrar check.** Looks up the real registrar from the public registry (RDAP), checks
+  whether DNS answers, shows clear banners (broken DNS, registrar mismatch, DNS elsewhere).
+- **Email templates**, email history per order, and auto-tick of "Reply to client within 1 hour"
+  when a Confirmation notice is sent.
 
 ## v1.15
 - **Fixed the $0 Stripe invoice bug (frontend half).** The "Create & send
