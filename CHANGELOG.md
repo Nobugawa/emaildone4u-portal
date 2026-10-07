@@ -1,5 +1,28 @@
 # EmailDone4U Technician Portal — Changelog
 
+## v1.20
+- **Confirmation email now shows an estimated completion date.** It assumes the client approves
+  access about 1 hour after the email is sent (our reply is already done), then applies the v1.19
+  business-day rule in Eastern Time. If the estimate for a Rush order would miss the 2 PM ET
+  cutoff, the email says so and gives the next business day. The email still says the real
+  deadline is set when the client actually approves access.
+- Matches landing v1.27, whose intake form shows a live estimate (now + 2 hours).
+
+## v1.19
+- **Due times now use business days and fixed clock times (Eastern Time).**
+  Standard = 5 PM ET on the 2nd business day. Priority = 5 PM ET the next business day.
+  Rush = 10 PM ET the same business day, if access is approved by 2 PM ET.
+  Fixes the old "Thu 12:05 AM → Mon 12:05 AM" result (it added weekdays at the same clock time).
+- **After-hours rule.** If access is approved on a weekend, on a U.S. federal holiday, after 5 PM ET
+  (after 2 PM ET for Rush), the clock starts at 9 AM ET the next business day. Before 9 AM on a
+  business day it starts at 9 AM that day. The Delivery clock card shows when the clock was
+  actually counted from.
+- Business days = Mon–Fri, excluding U.S. federal holidays (built in, with weekend "observed" shifts).
+- Delivery clock card now explains the rule for the order's tier before and after the clock starts.
+- Email templates (Confirmation, Access received) use the new wording.
+- Backend: intake-webhook v6 computes the provisional due time with the same rule.
+- No weekend / after-hours surcharge at launch.
+
 ## v1.18
 - **Delivery clock.** New card on each order. The promise clock starts when the client approves
   access to their domain settings: click "Access granted — start clock" and the due time is
