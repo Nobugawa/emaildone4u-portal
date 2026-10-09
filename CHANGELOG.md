@@ -1,5 +1,19 @@
 # EmailDone4U Technician Portal — Changelog
 
+## v1.21
+- **Order lists show when the order arrived.** The "Due" column is now "Received" (Eastern Time).
+  Under it: "Clock not started" until access is approved, then the usual countdown. This ends the
+  false red "Overdue" on orders where no clock was ever running.
+- **Order page** shows "Received" and, until access is approved, "Due: Not set — the clock starts
+  when access is approved" (the old provisional due time is no longer shown).
+- **DNS & registrar check no longer fails quietly on bad domains.** The domain on the order is cleaned
+  first (an email address like rome@bumann.com is checked as bumann.com; a pasted link is trimmed).
+  If it still isn't a web address (for example "Felixonline writing"), the card says so in red
+  instead of showing a blank result. The title shows "(checked as bumann.com)" when it was cleaned.
+- Backend (already live): domain-check v3 accepts email-style entries; send-client-email v7 BCCs every
+  client email to philos@greymatterfusion.com (Reply-To was already that address). To turn the copy off
+  set the function secret BCC_ADDRESS to an empty value.
+
 ## v1.20
 - **Confirmation email now shows an estimated completion date.** It assumes the client approves
   access about 1 hour after the email is sent (our reply is already done), then applies the v1.19
